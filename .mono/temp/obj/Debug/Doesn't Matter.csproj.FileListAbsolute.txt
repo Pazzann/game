@@ -1,0 +1,9 @@
+C:\Users\Пользователь\Documents\GitHub\game\.mono\temp\bin\Debug\Doesn't Matter.dll
+C:\Users\Пользователь\Documents\GitHub\game\.mono\temp\bin\Debug\Doesn't Matter.pdb
+C:\Users\Пользователь\Documents\GitHub\game\.mono\temp\obj\Debug\Doesn't Matter.csproj.AssemblyReference.cache
+C:\Users\Пользователь\Documents\GitHub\game\.mono\temp\obj\Debug\Doesn't Matter.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Пользователь\Documents\GitHub\game\.mono\temp\obj\Debug\Doesn't Matter.AssemblyInfoInputs.cache
+C:\Users\Пользователь\Documents\GitHub\game\.mono\temp\obj\Debug\Doesn't Matter.AssemblyInfo.cs
+C:\Users\Пользователь\Documents\GitHub\game\.mono\temp\obj\Debug\Doesn't Matter.csproj.CoreCompileInputs.cache
+C:\Users\Пользователь\Documents\GitHub\game\.mono\temp\obj\Debug\Doesn't Matter.dll
+C:\Users\Пользователь\Documents\GitHub\game\.mono\temp\obj\Debug\Doesn't Matter.pdb
