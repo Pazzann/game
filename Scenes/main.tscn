@@ -11,6 +11,8 @@ extents = Vector2( 16.5, 15.875 )
 [node name="Node2D" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+limit_smoothed = true
+smoothing_enabled = true
 script = ExtResource( 3 )
 
 [node name="floor" type="Sprite" parent="."]
