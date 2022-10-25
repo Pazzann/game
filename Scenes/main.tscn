@@ -30,3 +30,8 @@ shape = SubResource( 1 )
 position = Vector2( 17, -16 )
 scale = Vector2( 0.0662842, 0.0643311 )
 texture = ExtResource( 2 )
+
+[node name="RedSquare" type="Sprite" parent="."]
+position = Vector2( 625, 322 )
+scale = Vector2( 0.603516, 0.585938 )
+texture = ExtResource( 2 )
