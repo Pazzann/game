@@ -1,21 +1,33 @@
 using Godot;
 using System;
+using Game.Main.Scripts.Bullets;
 
-public class Goblin : Node
+namespace Game.Main.Scripts.Enemies
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
+	public class Goblin : KinematicBody2D
+	{
+		private PackedScene _goblinBulletScene;
 
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-        
-    }
+		private float timer = 1.0f;
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+		// Called when the node enters the scene tree for the first time.
+		public override void _Ready()
+		{
+			_goblinBulletScene = GD.Load<PackedScene>("res://Prefabs/GoblinBullet.tscn");
+		}
+
+		// Called every frame. 'delta' is the elapsed time since the previous frame.
+		public override void _Process(float delta)
+		{
+			timer -= delta;
+			if (timer <= 0.0f)
+			{
+				GoblinBullet bullet = _goblinBulletScene.Instance() as GoblinBullet;
+				bullet.Position = Position;
+				GetParent().AddChild(bullet);
+				bullet.SetVelocity();
+				timer = 1.0f;
+			}
+		}
+	}
 }
