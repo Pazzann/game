@@ -6,6 +6,8 @@ namespace Game.Main.Scripts.Bullets
 {
 	public class GoblinBullet : KinematicBody2D
 	{
+		[Export] private int Speed = 200;
+
 		private Vector2 _velocity = new Vector2();
 		private float _bulletSpeed = 1.0f;
 
@@ -21,9 +23,11 @@ namespace Game.Main.Scripts.Bullets
 		{
 			if (_player == null)
 				return;
-			Vector2 difference = Position - _player.Position;
-			_velocity.x = _bulletSpeed * (difference.x / (difference.x + difference.y));
-			_velocity.y = _bulletSpeed * (difference.y / (difference.x + difference.y));
+			Vector2 difference = this.Position - _player.Position;
+			difference = difference.Normalized();
+			_velocity.x -= difference.x; 
+			_velocity.y -= difference.y; 
+			//_velocity = _velocity.Normalized() * Speed;
 		}
 
 
