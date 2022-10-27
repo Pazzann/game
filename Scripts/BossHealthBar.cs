@@ -15,7 +15,6 @@ namespace Game.Main.Scripts
 		{
 			foreach (Node child in GetParent().GetParent().GetChildren())
 			{
-				GD.Print(child.Name);
 				if (child is BasicEnemy enemy)
 				{
 					MaxValue = enemy.health;

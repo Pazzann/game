@@ -39,11 +39,6 @@ namespace Game.Main.Scripts.Bullets
 		public override void _PhysicsProcess(float delta)
 		{
 			var collision = MoveAndCollide(_velocity);
-			if (collision != null && ((Node)collision.Collider).GetType() == typeof(Movement))
-			{
-				_player.Hit(Damage);
-				QueueFree();
-			}
 		}
 	}
 }
