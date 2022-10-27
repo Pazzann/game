@@ -17,14 +17,5 @@ namespace Game.Main.Scripts.Player
 			await ToSignal(_tween, "tween_completed");
 			QueueFree();
 		}
-		//
-		// public override void _TweenAllCompleted(object obj, NodePath key)
-		// {
-		//     
-		// }
-		// // Called every frame. 'delta' is the elapsed time since the previous frame.
-		// public override void _Process(float delta)
-		// {
-		// }
 	}
 }

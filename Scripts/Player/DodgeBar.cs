@@ -1,9 +1,9 @@
 using Godot;
 using System;
-using Game.Main.Scripts.Player;
 
 
-namespace Game.Main.Scripts
+
+namespace Game.Main.Scripts.Player
 {
 	public class DodgeBar : ProgressBar
 	{

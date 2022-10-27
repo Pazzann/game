@@ -4,15 +4,15 @@ using Game.Main.Scripts.Bullets;
 
 namespace Game.Main.Scripts.Enemies
 {
-	public class Goblin : KinematicBody2D
+	public class Goblin : BasicEnemy
 	{
 		private PackedScene _goblinBulletScene;
-
 		private float timer = 1.0f;
 
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
+			health = 1000.0f;
 			_goblinBulletScene = GD.Load<PackedScene>("res://Prefabs/GoblinBullet.tscn");
 		}
 

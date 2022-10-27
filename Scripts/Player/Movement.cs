@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Game.Main.Scripts.Bullets;
 
 namespace Game.Main.Scripts.Player
 {
@@ -102,10 +103,10 @@ namespace Game.Main.Scripts.Player
 			for (int i = 0; i < GetSlideCount(); i++)
 			{
 				var collision = GetSlideCollision(i);
-				if (((Node)collision.Collider).Name.Contains("GoblinBullet"))
+				if (((Node)collision.Collider) is BasicBullet bullet)
 				{
-					((Node)collision.Collider).QueueFree();
-					Hit(5.0f);
+					bullet.QueueFree();
+					Hit(bullet.Damage);
 				}
 			}
 			
