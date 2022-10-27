@@ -116,7 +116,7 @@ namespace Game.Main.Scripts.Player
 				if (_dodgeTimes % 3 == 1)
 				{
 					Sprite dashGhost = _dashGhostScene.Instance() as Sprite;
-					dashGhost.Position = new Vector2(Position.x, Position.y - 32.0f);
+					dashGhost.Position = new Vector2(Position.x - 16.0f, Position.y - 16.0f);
 					GetParent().AddChild(dashGhost);
 				}
 				

@@ -25,8 +25,8 @@ namespace Game.Main.Scripts.Bullets
 				return;
 			Vector2 difference = this.Position - _player.Position;
 			difference = difference.Normalized();
-			_velocity.x -= difference.x; 
-			_velocity.y -= difference.y; 
+			_velocity.x -= difference.x * _bulletSpeed; 
+			_velocity.y -= difference.y * _bulletSpeed; 
 			//_velocity = _velocity.Normalized() * Speed;
 		}
 
