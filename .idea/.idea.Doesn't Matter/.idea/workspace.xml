@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4749bd95-0cf7-4e16-9868-0a3e252aef94" name="Changes" comment="" />
+    <list default="true" id="4749bd95-0cf7-4e16-9868-0a3e252aef94" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Scripts/Player/AttackBar.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Doesn't Matter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Doesn't Matter/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mono/metadata/ide_messaging_meta.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/metadata/ide_messaging_meta.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mono/metadata/scripts_metadata.editor" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/metadata/scripts_metadata.editor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mono/metadata/scripts_metadata.editor_player" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/metadata/scripts_metadata.editor_player" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mono/temp/bin/Debug/Doesn't Matter.dll" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/temp/bin/Debug/Doesn't Matter.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mono/temp/bin/Debug/Doesn't Matter.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/temp/bin/Debug/Doesn't Matter.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mono/temp/obj/Debug/Doesn't Matter.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/temp/obj/Debug/Doesn't Matter.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mono/temp/obj/Debug/Doesn't Matter.dll" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/temp/obj/Debug/Doesn't Matter.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mono/temp/obj/Debug/Doesn't Matter.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/temp/obj/Debug/Doesn't Matter.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prefabs/Player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Prefabs/Player.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scenes/main.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Scenes/main.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/BossHealthBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/BossHealthBar.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Enemies/BasicEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Enemies/BasicEnemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Enemies/Goblin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Enemies/Goblin.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Player/Movement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Player/Movement.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -66,7 +83,8 @@
       <workItem from="1666717718190" duration="3313000" />
       <workItem from="1666771009946" duration="1362000" />
       <workItem from="1666774838264" duration="8828000" />
-      <workItem from="1666877804290" duration="9346000" />
+      <workItem from="1666877804290" duration="9930000" />
+      <workItem from="1666952124961" duration="1956000" />
     </task>
     <servers />
   </component>

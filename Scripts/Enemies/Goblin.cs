@@ -23,7 +23,7 @@ namespace Game.Main.Scripts.Enemies
 			if (timer <= 0.0f)
 			{
 				GoblinBullet bullet = _goblinBulletScene.Instance() as GoblinBullet;
-				bullet.Position = Position;
+				bullet.Position = Position + new Vector2(100.0f, 100.0f);
 				GetParent().AddChild(bullet);
 				bullet.SetVelocity();
 				timer = 1.0f;

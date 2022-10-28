@@ -17,7 +17,8 @@ namespace Game.Main.Scripts
 			{
 				if (child is BasicEnemy enemy)
 				{
-					MaxValue = enemy.health;
+					var h = 1000.0f;
+					MaxValue = h;
 					Boss = enemy;
 				}
 			}
@@ -25,9 +26,9 @@ namespace Game.Main.Scripts
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
-		public override void _Process(float delta)
+		public override void _PhysicsProcess(float delta)
 		{
-			Value = Boss.health;
+			this.Value = Boss.health;
 		}
 	}
 }

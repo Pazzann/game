@@ -2,12 +2,14 @@ using System;
 using Godot;
 using Game.Main.Enums;
 using Game.Main.Scripts.Bullets;
+using Game.Main.Scripts.Enemies;
 
 namespace Game.Main.Scripts.Player
 {
 	public class Movement : KinematicBody2D
 	{
-		[Export] private int Speed = 200;
+		[Export] public float Speed = 200.0f;
+		[Export] public float SwordDamage = 50.0f;
 
 		private Vector2 _velocity = new Vector2();
 		public float Health = 100.0f;
@@ -17,20 +19,22 @@ namespace Game.Main.Scripts.Player
 		public float DodgeCoolDown = 0.0f;
 		private bool _dodging = false;
 
+		public float AttackCoolDown = 0.0f;
+
 		private CollisionShape2D[] _attackCollision = new CollisionShape2D[8];
 		private CollisionShape2D _playerCol;
 		private PackedScene _dashGhostScene;
 
 		public override void _Ready()
 		{
-			_attackCollision[(int)AttackPositions.UpLeft] = GetChild(3) as CollisionShape2D;
-			_attackCollision[(int)AttackPositions.Up] = GetChild(4) as CollisionShape2D;
-			_attackCollision[(int)AttackPositions.UpRight] = GetChild(5) as CollisionShape2D;
-			_attackCollision[(int)AttackPositions.Right] = GetChild(6) as CollisionShape2D;
-			_attackCollision[(int)AttackPositions.DownRight] = GetChild(7) as CollisionShape2D;
-			_attackCollision[(int)AttackPositions.Down] = GetChild(8) as CollisionShape2D;
-			_attackCollision[(int)AttackPositions.DownLeft] = GetChild(9) as CollisionShape2D;
-			_attackCollision[(int)AttackPositions.Left] = GetChild(10) as CollisionShape2D;
+			_attackCollision[(int)AttackPositions.UpLeft] = GetChild(4) as CollisionShape2D;
+			_attackCollision[(int)AttackPositions.Up] = GetChild(5) as CollisionShape2D;
+			_attackCollision[(int)AttackPositions.UpRight] = GetChild(6) as CollisionShape2D;
+			_attackCollision[(int)AttackPositions.Right] = GetChild(7) as CollisionShape2D;
+			_attackCollision[(int)AttackPositions.DownRight] = GetChild(8) as CollisionShape2D;
+			_attackCollision[(int)AttackPositions.Down] = GetChild(9) as CollisionShape2D;
+			_attackCollision[(int)AttackPositions.DownLeft] = GetChild(10) as CollisionShape2D;
+			_attackCollision[(int)AttackPositions.Left] = GetChild(11) as CollisionShape2D;
 			foreach (var shape2D in _attackCollision)
 			{
 				shape2D.Disabled = true;
@@ -66,10 +70,21 @@ namespace Game.Main.Scripts.Player
 			if (Input.IsActionPressed("dodge") && _dodgePos)
 				_dodging = true;
 
-			if (Input.IsActionPressed("sword_attack"))
+			if (Input.IsActionPressed("sword_attack") && AttackCoolDown <= 0.0f)
 			{
 				var collision = _attackCollision[calculateAttackPosition()];
 				collision.Disabled = false;
+				var velocity = MoveAndSlide(new Vector2(0.0f, 0.0f));
+				for (int i = 0; i < GetSlideCount(); i++)
+				{
+					var collision1 = GetSlideCollision(i);
+					if (((Node)collision1.Collider) is BasicEnemy boss)
+					{
+						boss.health -= SwordDamage;
+					}
+				}
+				collision.Disabled = true;
+				AttackCoolDown = 2.0f;
 			}
 
 			if (_dodging)
@@ -118,7 +133,6 @@ namespace Game.Main.Scripts.Player
 		}
 		public override void _PhysicsProcess(float delta)
 		{
-			GD.Print(GetGlobalMousePosition().y);
 			GetInput();
 			_playerCol.Disabled = _dodging;
 			_velocity = MoveAndSlide(_velocity);
@@ -134,6 +148,8 @@ namespace Game.Main.Scripts.Player
 			}
 			
 			DodgeCoolDown -= delta;
+			AttackCoolDown -= delta;
+			
 			if (_dodging)
 			{
 				_dodgeTimes++;
