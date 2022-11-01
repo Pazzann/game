@@ -14,6 +14,10 @@ namespace Game.Main.Scripts.Player
 		private Vector2 _velocity = new Vector2();
 		public float Health = 100.0f;
 
+		private AnimationTypes _curAnimation;
+		private Orientations _curOrientation = Orientations.LEFT;
+		private bool _attacking = false;
+
 		private bool _dodgePos = true;
 		private int _dodgeTimes = 0;
 		public float DodgeCoolDown = 0.0f;
@@ -24,9 +28,16 @@ namespace Game.Main.Scripts.Player
 		private CollisionShape2D[] _attackCollision = new CollisionShape2D[8];
 		private CollisionShape2D _playerCol;
 		private PackedScene _dashGhostScene;
+		private AnimatedSprite _playerSprite;
 
 		public override void _Ready()
 		{
+			_playerSprite = GetChild(1) as AnimatedSprite;
+			_playerSprite.Stop();
+			_playerSprite.Play("Idle");
+			_curAnimation = AnimationTypes.IDLE;
+
+
 			_attackCollision[(int)AttackPositions.UpLeft] = GetChild(4) as CollisionShape2D;
 			_attackCollision[(int)AttackPositions.Up] = GetChild(5) as CollisionShape2D;
 			_attackCollision[(int)AttackPositions.UpRight] = GetChild(6) as CollisionShape2D;
@@ -39,13 +50,12 @@ namespace Game.Main.Scripts.Player
 			{
 				shape2D.Disabled = true;
 			}
+
 			_playerCol = GetChild(0) as CollisionShape2D;
 			_dashGhostScene = GD.Load<PackedScene>("res://Prefabs/DashGhost.tscn");
 		}
 
 
-		
-		
 		public void GetInput()
 		{
 			_velocity = new Vector2();
@@ -72,6 +82,10 @@ namespace Game.Main.Scripts.Player
 
 			if (Input.IsActionPressed("sword_attack") && AttackCoolDown <= 0.0f)
 			{
+				_attacking = true;
+				_playerSprite.Play("Attack");
+				_curAnimation = AnimationTypes.ATTACK;
+
 				var collision = _attackCollision[calculateAttackPosition()];
 				collision.Disabled = false;
 				var velocity = MoveAndSlide(new Vector2(0.0f, 0.0f));
@@ -83,6 +97,7 @@ namespace Game.Main.Scripts.Player
 						boss.health -= SwordDamage;
 					}
 				}
+
 				collision.Disabled = true;
 				AttackCoolDown = 2.0f;
 			}
@@ -125,18 +140,62 @@ namespace Game.Main.Scripts.Player
 				else if (Input.IsActionPressed("up"))
 					_velocity.y -= 1000;
 			}
+
+
+			//animations handler
+			if (!_attacking)
+			{
+				if (Input.IsActionPressed("left") && _curOrientation == Orientations.RIGHT)
+				{
+					_curOrientation = Orientations.LEFT;
+					_playerSprite.FlipH = false;
+				}
+
+				if (Input.IsActionPressed("right") && _curOrientation == Orientations.LEFT)
+				{
+					_curOrientation = Orientations.RIGHT;
+					_playerSprite.FlipH = true;
+				}
+
+				if (!Input.IsActionPressed("right") &&
+					!Input.IsActionPressed("up") &&
+					!Input.IsActionPressed("down") &&
+					!Input.IsActionPressed("left") &&
+					_curAnimation != AnimationTypes.IDLE)
+				{
+					_playerSprite.Play("Idle");
+					_curAnimation = AnimationTypes.IDLE;
+				}
+				else if (
+					(Input.IsActionPressed("right") ||
+					 Input.IsActionPressed("up") ||
+					 Input.IsActionPressed("down") ||
+					 Input.IsActionPressed("left"))
+					&&
+					_curAnimation != AnimationTypes.WALK)
+				{
+					_playerSprite.Play("Walk");
+					_curAnimation = AnimationTypes.WALK;
+				}
+			}
+			else
+			{
+				if (_playerSprite.Frame == 10)
+					_attacking = false;
+			}
 		}
 
 		public void Hit(float damage)
 		{
 			Health -= damage;
 		}
+
 		public override void _PhysicsProcess(float delta)
 		{
 			GetInput();
 			_playerCol.Disabled = _dodging;
 			_velocity = MoveAndSlide(_velocity);
-			
+
 			for (int i = 0; i < GetSlideCount(); i++)
 			{
 				var collision = GetSlideCollision(i);
@@ -146,21 +205,24 @@ namespace Game.Main.Scripts.Player
 					Hit(bullet.Damage);
 				}
 			}
-			
+
 			DodgeCoolDown -= delta;
 			AttackCoolDown -= delta;
-			
+
 			if (_dodging)
 			{
 				_dodgeTimes++;
 				if (_dodgeTimes % 3 == 1)
 				{
 					Sprite dashGhost = _dashGhostScene.Instance() as Sprite;
-					dashGhost.Position = new Vector2(Position.x - 16.0f, Position.y - 16.0f);
+					dashGhost.Position = new Vector2(Position.x - 60.0f, Position.y - 60.0f);
+					if (_curOrientation == Orientations.RIGHT)
+					{
+						dashGhost.FlipH = true;
+					}
+
 					GetParent().AddChild(dashGhost);
 				}
-				
-
 			}
 
 			if (_dodgeTimes >= 10)
@@ -171,17 +233,22 @@ namespace Game.Main.Scripts.Player
 				_dodgePos = false;
 			}
 		}
+
 		private int calculateAttackPosition()
 		{
-
 			// y = kx + m
 			// (-k)x + (-b)y  = 0
 			// dis = abs(ax0 + by0) / sqrt(a*a + b*b)			
-			
+
 			var mousePos = GetGlobalMousePosition();
 			mousePos = mousePos - Position;
 			if (0 <= mousePos.x)
 			{
+				if (_curOrientation == Orientations.RIGHT)
+				{
+					_curOrientation = Orientations.LEFT;
+					_playerSprite.FlipH = true;
+				}
 				if (0 <= mousePos.y)
 				{
 					//4
@@ -211,6 +278,11 @@ namespace Game.Main.Scripts.Player
 			}
 			else
 			{
+				if (_curOrientation == Orientations.LEFT)
+				{
+					_curOrientation = Orientations.RIGHT;
+					_playerSprite.FlipH = false;
+				}
 				if (0 <= mousePos.y)
 				{
 					//3
@@ -238,6 +310,7 @@ namespace Game.Main.Scripts.Player
 						return (int)AttackPositions.Up;
 				}
 			}
+
 			return 0;
 		}
 	}
