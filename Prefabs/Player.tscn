@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://sprites/playeranim5.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player/Movement.cs" type="Script" id=2]
@@ -20,6 +20,15 @@
 [ext_resource path="res://sprites/playeranim4.png" type="Texture" id=18]
 [ext_resource path="res://sprites/playeranim16.png" type="Texture" id=19]
 [ext_resource path="res://sprites/playeranim17.png" type="Texture" id=20]
+[ext_resource path="res://sprites/attack dash4.png" type="Texture" id=21]
+[ext_resource path="res://sprites/attack dash2.png" type="Texture" id=22]
+[ext_resource path="res://sprites/attack dash5.png" type="Texture" id=23]
+[ext_resource path="res://sprites/attack dash7.png" type="Texture" id=24]
+[ext_resource path="res://sprites/attack dash1.png" type="Texture" id=25]
+[ext_resource path="res://sprites/attack dash9.png" type="Texture" id=26]
+[ext_resource path="res://sprites/attack dash3.png" type="Texture" id=27]
+[ext_resource path="res://sprites/attack dash8.png" type="Texture" id=28]
+[ext_resource path="res://sprites/attack dash6.png" type="Texture" id=29]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 21.6667, 30.3333 )
@@ -43,14 +52,14 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 25.3184, 7.67672 )
+extents = Vector2( 29.6738, 7.67672 )
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [  ],
-"loop": true,
+"frames": [ ExtResource( 25 ), ExtResource( 22 ), ExtResource( 27 ), ExtResource( 21 ), ExtResource( 23 ), ExtResource( 29 ), ExtResource( 24 ), ExtResource( 28 ), ExtResource( 26 ) ],
+"loop": false,
 "name": "Spawn",
-"speed": 5.0
+"speed": 20.0
 } ]
 
 [node name="Player" type="KinematicBody2D"]
@@ -81,11 +90,14 @@ margin_bottom = -46.0
 script = ExtResource( 4 )
 
 [node name="UpLeft" type="CollisionShape2D" parent="."]
-position = Vector2( -28, -40 )
+position = Vector2( -29.3048, -38.9641 )
 rotation = -0.671036
 shape = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="UpLeft"]
+position = Vector2( 0.0983582, -0.000346794 )
+rotation = 1.56727
+scale = Vector2( 1, 0.939534 )
 frames = SubResource( 4 )
 animation = "Spawn"
 
@@ -94,35 +106,83 @@ position = Vector2( -1.19209e-07, -44 )
 rotation = -0.0318826
 shape = SubResource( 2 )
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Up"]
+position = Vector2( 0.0983582, -0.000346794 )
+rotation = 1.56727
+scale = Vector2( 1, 0.939534 )
+frames = SubResource( 4 )
+animation = "Spawn"
+
 [node name="UpRight" type="CollisionShape2D" parent="."]
 position = Vector2( 25.3333, -44 )
 rotation = 0.750587
-scale = Vector2( 1, 1 )
 shape = SubResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="UpRight"]
+position = Vector2( 0.0983582, -0.000346794 )
+rotation = 1.56727
+scale = Vector2( 1, 0.939534 )
+frames = SubResource( 4 )
+animation = "Spawn"
 
 [node name="Right" type="CollisionShape2D" parent="."]
 position = Vector2( 31.8133, -4.44641 )
 rotation = 1.56144
 shape = SubResource( 2 )
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Right"]
+position = Vector2( 0.0983582, -0.000346794 )
+rotation = 1.56727
+scale = Vector2( 1, 0.939534 )
+frames = SubResource( 4 )
+animation = "Spawn"
+
 [node name="DownRight" type="CollisionShape2D" parent="."]
 position = Vector2( 30.6667, 30.6667 )
 rotation = 2.48116
 shape = SubResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="DownRight"]
+position = Vector2( 0.0983582, -0.000346794 )
+rotation = 1.56727
+scale = Vector2( 1, 0.939534 )
+frames = SubResource( 4 )
+animation = "Spawn"
 
 [node name="Down" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 36 )
 rotation = -0.0253395
 shape = SubResource( 2 )
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Down"]
+position = Vector2( 0.0983582, -0.000346794 )
+rotation = 1.56727
+scale = Vector2( 1, 0.939534 )
+frames = SubResource( 4 )
+animation = "Spawn"
+
 [node name="DownLeft" type="CollisionShape2D" parent="."]
 position = Vector2( -32.6667, 28 )
 rotation = 0.760791
 shape = SubResource( 2 )
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="DownLeft"]
+position = Vector2( 0.0983582, -0.000346794 )
+rotation = 1.56727
+scale = Vector2( 1, 0.939534 )
+frames = SubResource( 4 )
+animation = "Spawn"
+
 [node name="Left" type="CollisionShape2D" parent="."]
 position = Vector2( -32.6667, -4.66667 )
 rotation = 1.54443
 shape = SubResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Left"]
+position = Vector2( 0.0983582, -0.000346794 )
+rotation = 1.56727
+scale = Vector2( 1, 0.939534 )
+frames = SubResource( 4 )
+animation = "Spawn"
 
 [node name="Tween" type="Tween" parent="."]

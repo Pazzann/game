@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4749bd95-0cf7-4e16-9868-0a3e252aef94" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Doesn't Matter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Doesn't Matter/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mono/metadata/ide_messaging_meta.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/metadata/ide_messaging_meta.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.mono/metadata/scripts_metadata.editor" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/metadata/scripts_metadata.editor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.mono/metadata/scripts_metadata.editor_player" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/metadata/scripts_metadata.editor_player" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.mono/temp/bin/Debug/Doesn't Matter.dll" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/temp/bin/Debug/Doesn't Matter.dll" afterDir="false" />
@@ -16,6 +17,9 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cec566944e9147679c4841a2f7b52331294000/79/c9761b54/Node.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -80,7 +84,7 @@
       <workItem from="1666952124961" duration="2764000" />
       <workItem from="1667217595973" duration="399000" />
       <workItem from="1667305253512" duration="3868000" />
-      <workItem from="1667374388601" duration="3523000" />
+      <workItem from="1667374388601" duration="5773000" />
     </task>
     <servers />
   </component>

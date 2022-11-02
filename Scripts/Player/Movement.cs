@@ -47,6 +47,11 @@ namespace Game.Main.Scripts.Player
 			_attackCollision[(int)AttackPositions.Down] = GetChild(9) as CollisionShape2D;
 			_attackCollision[(int)AttackPositions.DownLeft] = GetChild(10) as CollisionShape2D;
 			_attackCollision[(int)AttackPositions.Left] = GetChild(11) as CollisionShape2D;
+
+			(_attackCollision[(int)AttackPositions.Down].GetChild(0) as AnimatedSprite).FlipH = true;
+			(_attackCollision[(int)AttackPositions.Left].GetChild(0) as AnimatedSprite).FlipV = true;
+			(_attackCollision[(int)AttackPositions.Right].GetChild(0) as AnimatedSprite).FlipV = true;
+			(_attackCollision[(int)AttackPositions.Left].GetChild(0) as AnimatedSprite).FlipH = true;
 			
 			_tween = GetChild(12) as Tween;
 			
@@ -94,6 +99,13 @@ namespace Game.Main.Scripts.Player
 
 				var collision = _attackCollision[calculateAttackPosition()];
 				collision.Disabled = false;
+				var attackAnim = collision.GetChild(0) as AnimatedSprite;
+				if (attackAnim != null)
+				{
+					attackAnim.Frame = 0;
+					attackAnim.Play("Spawn");
+				}
+				
 				var velocity = MoveAndSlide(new Vector2(0.0f, 0.0f));
 				for (int i = 0; i < GetSlideCount(); i++)
 				{
