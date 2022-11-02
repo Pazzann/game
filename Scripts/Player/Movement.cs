@@ -22,6 +22,7 @@ namespace Game.Main.Scripts.Player
 		private int _dodgeTimes = 0;
 		public float DodgeCoolDown = 0.0f;
 		private bool _dodging = false;
+		private Tween _tween;
 
 		public float AttackCoolDown = 0.0f;
 
@@ -46,6 +47,11 @@ namespace Game.Main.Scripts.Player
 			_attackCollision[(int)AttackPositions.Down] = GetChild(9) as CollisionShape2D;
 			_attackCollision[(int)AttackPositions.DownLeft] = GetChild(10) as CollisionShape2D;
 			_attackCollision[(int)AttackPositions.Left] = GetChild(11) as CollisionShape2D;
+			
+			_tween = GetChild(12) as Tween;
+			
+			
+			
 			foreach (var shape2D in _attackCollision)
 			{
 				shape2D.Disabled = true;
@@ -147,14 +153,11 @@ namespace Game.Main.Scripts.Player
 			{
 				if (Input.IsActionPressed("left") && _curOrientation == Orientations.RIGHT)
 				{
-					_curOrientation = Orientations.LEFT;
-					_playerSprite.FlipH = false;
+					changePosition();
 				}
-
 				if (Input.IsActionPressed("right") && _curOrientation == Orientations.LEFT)
 				{
-					_curOrientation = Orientations.RIGHT;
-					_playerSprite.FlipH = true;
+					changePosition();
 				}
 
 				if (!Input.IsActionPressed("right") &&
@@ -188,6 +191,8 @@ namespace Game.Main.Scripts.Player
 		public void Hit(float damage)
 		{
 			Health -= damage;
+			_tween.InterpolateProperty(_playerSprite, "self_modulate", new Color(2.0f, 1.0f, 1.0f), new Color(1.0f, 1.0f, 1.0f), 0.8f, Tween.TransitionType.Quart, Tween.EaseType.Out);
+			_tween.Start();
 		}
 
 		public override void _PhysicsProcess(float delta)
@@ -244,10 +249,9 @@ namespace Game.Main.Scripts.Player
 			mousePos = mousePos - Position;
 			if (0 <= mousePos.x)
 			{
-				if (_curOrientation == Orientations.RIGHT)
+				if (_curOrientation != Orientations.RIGHT)
 				{
-					_curOrientation = Orientations.LEFT;
-					_playerSprite.FlipH = true;
+					changePosition();
 				}
 				if (0 <= mousePos.y)
 				{
@@ -278,10 +282,9 @@ namespace Game.Main.Scripts.Player
 			}
 			else
 			{
-				if (_curOrientation == Orientations.LEFT)
+				if (_curOrientation != Orientations.LEFT)
 				{
-					_curOrientation = Orientations.RIGHT;
-					_playerSprite.FlipH = false;
+					changePosition();
 				}
 				if (0 <= mousePos.y)
 				{
@@ -312,6 +315,25 @@ namespace Game.Main.Scripts.Player
 			}
 
 			return 0;
+		}
+
+		private void changePosition()
+		{
+			switch (_curOrientation)
+			{
+				case Orientations.LEFT:
+				{
+					_curOrientation = Orientations.RIGHT;
+					_playerSprite.FlipH = true;
+					return;
+				}
+				case Orientations.RIGHT:
+				{
+					_curOrientation = Orientations.LEFT;
+					_playerSprite.FlipH = false;
+					return;
+				}
+			}
 		}
 	}
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://sprites/playeranim5.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player/Movement.cs" type="Script" id=2]
@@ -22,7 +22,7 @@
 [ext_resource path="res://sprites/playeranim17.png" type="Texture" id=20]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 17, 16 )
+extents = Vector2( 21.6667, 30.3333 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
@@ -43,13 +43,22 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 54.5, 12 )
+extents = Vector2( 25.3184, 7.67672 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "Spawn",
+"speed": 5.0
+} ]
 
 [node name="Player" type="KinematicBody2D"]
 scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.333333, -4.33333 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -72,41 +81,48 @@ margin_bottom = -46.0
 script = ExtResource( 4 )
 
 [node name="UpLeft" type="CollisionShape2D" parent="."]
-position = Vector2( -35, -39 )
+position = Vector2( -28, -40 )
 rotation = -0.671036
 shape = SubResource( 2 )
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="UpLeft"]
+frames = SubResource( 4 )
+animation = "Spawn"
+
 [node name="Up" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -48 )
+position = Vector2( -1.19209e-07, -44 )
 rotation = -0.0318826
 shape = SubResource( 2 )
 
 [node name="UpRight" type="CollisionShape2D" parent="."]
-position = Vector2( 31, -38 )
+position = Vector2( 25.3333, -44 )
 rotation = 0.750587
+scale = Vector2( 1, 1 )
 shape = SubResource( 2 )
 
 [node name="Right" type="CollisionShape2D" parent="."]
-position = Vector2( 46, -5 )
-rotation = 1.53843
+position = Vector2( 31.8133, -4.44641 )
+rotation = 1.56144
 shape = SubResource( 2 )
 
 [node name="DownRight" type="CollisionShape2D" parent="."]
-position = Vector2( 39, 29 )
+position = Vector2( 30.6667, 30.6667 )
 rotation = 2.48116
 shape = SubResource( 2 )
 
 [node name="Down" type="CollisionShape2D" parent="."]
-position = Vector2( 4, 42 )
+position = Vector2( 0, 36 )
 rotation = -0.0253395
 shape = SubResource( 2 )
 
 [node name="DownLeft" type="CollisionShape2D" parent="."]
-position = Vector2( -42, 30 )
+position = Vector2( -32.6667, 28 )
 rotation = 0.760791
 shape = SubResource( 2 )
 
 [node name="Left" type="CollisionShape2D" parent="."]
-position = Vector2( -43, -5 )
+position = Vector2( -32.6667, -4.66667 )
 rotation = 1.54443
 shape = SubResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]
